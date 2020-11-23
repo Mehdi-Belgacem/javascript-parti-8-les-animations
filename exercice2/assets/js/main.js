@@ -1,19 +1,25 @@
-let firstFable = document.getElementById('fable1');
-let btnFirstFable = document.getElementById('btnFirstFable');
-btnFirstFable.addEventListener('click', function () { firstFable.style.fontWeight = 'bold'; firstFable.style.color = 'red'; firstFable.style.fontSize = '2rem'; })
+let fableList = document.getElementsByTagName('section'); // selectionne tout les élément 'section' \\
 
-let secondFable = document.getElementById('fable2');
-let btnSecondFable = document.getElementById('btnSecondFable');
-btnSecondFable.addEventListener('click', function () { secondFable.style.fontWeight = 'bold'; secondFable.style.color = 'purple'; secondFable.style.fontSize = '2rem'; })
+for (const element of fableList) { // Boucle forOf pour intéragir avec tout les éléments du tableau indiqué \\
+    element.style.display = 'none';
+};
 
-let thirdFable = document.getElementById('fable3');
-let btnThirdFable = document.getElementById('btnThirdFable');
-btnThirdFable.addEventListener('click', function () { thirdFable.style.fontWeight = 'bold'; thirdFable.style.color = 'green'; thirdFable.style.fontSize = '2rem'; })
+let fableLinkList = document.getElementsByClassName('nav-link'); // sélectionne tout les élément 'nav-link' \\
+for (const element of fableLinkList) {
+    element.addEventListener('click', showFable)
+}
 
-let fourthFable = document.getElementById('fable4');
-let btnFourthFable = document.getElementById('btnFourthFable');
-btnFourthFable.addEventListener('click', function () { fourthFable.style.fontWeight = 'bold'; fourthFable.style.color = 'orange'; fourthFable.style.fontSize = '2rem'; })
+function showFable() {
+    let fablePosition = this.href.indexOf('#') + 1; // +1 Identifie le caractère suivant le '#' \\
+    let fable = this.href.substring(fablePosition);
+    for (const element of fableList) { // Boucle forOf pour intéragir avec tout les éléments du tableau indiqué \\
+        if (element.id == fable) { // Si mon id est égale a fable alors on affiche l'element \\
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none'; // Sinon on cache l'élément \\
+        }
+    }
+}
 
-let fifthFable = document.getElementById('fable5');
-let btnFifthFable = document.getElementById('btnFifthFable');
-btnFifthFable.addEventListener('click', function () { fifthFable.style.fontWeight = 'bold'; fifthFable.style.color = 'blue'; fifthFable.style.fontSize = '2rem'; fifthFable.style.background = 'black'; })
+// "console.log(this.href)" This est celui qui à declencher l'évènements. Event ou This utilise l'élément \\
+// console.log(event.currentTarget.href) sert a ciblé l'élément qui a fait l'évènement. \\
